@@ -1,16 +1,18 @@
 package com.caomeiprincess.service.impl;
 
+import com.caomeiprincess.common.service.impl.BaseServiceImpl;
 import com.caomeiprincess.entity.Tags;
 import com.caomeiprincess.exception.GlobalException;
 import com.caomeiprincess.mapper.TagMapper;
 import com.caomeiprincess.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class TagServiceImpl implements TagService {
+public class TagServiceImpl extends BaseServiceImpl<Tags> implements TagService {
     @Autowired
     private TagMapper tagMapper;
 
@@ -28,6 +30,7 @@ public class TagServiceImpl implements TagService {
         }
     }
 
+    @Transactional
     @Override
     public void save(Tags tags) {
         tagMapper.insert(tags);
@@ -38,5 +41,26 @@ public class TagServiceImpl implements TagService {
         Tags tags = new Tags();
         tags.setName(name);
         return tagMapper.select(tags).get(0);
+    }
+
+    @Override
+    public List<Tags> findAll() {
+        return tagMapper.selectAll();
+    }
+
+    @Override
+    public void delete(List<Long> ids) {
+        batchDelete(ids,"id",Tags.class);
+    }
+
+    @Override
+    public Tags findById(Long id) {
+        return tagMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    @Transactional
+    public void update(Tags tags) {
+        tagMapper.updateByPrimaryKey(tags);
     }
 }

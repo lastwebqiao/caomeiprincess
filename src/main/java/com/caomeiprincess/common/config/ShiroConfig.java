@@ -121,7 +121,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/site/**", "anon");
 
         filterChainDefinitionMap.put("/live2d/**", "anon");
-        filterChainDefinitionMap.put("/test/**", "anon");
 
         filterChainDefinitionMap.put("/logout", "logout");
 

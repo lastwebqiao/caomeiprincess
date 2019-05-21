@@ -1,5 +1,7 @@
 package com.caomeiprincess.service.impl;
 
+import com.alibaba.druid.util.StringUtils;
+import com.caomeiprincess.common.service.impl.BaseServiceImpl;
 import com.caomeiprincess.dto.CommentsDTO;
 import com.caomeiprincess.entity.Comments;
 import com.caomeiprincess.mapper.CommentsMapper;
@@ -17,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CommentsServiceImpl implements CommentsService {
+public class CommentsServiceImpl extends BaseServiceImpl<Comments> implements CommentsService {
 
     @Autowired
     private CommentsMapper commentsMapper;
@@ -69,5 +71,20 @@ public class CommentsServiceImpl implements CommentsService {
             map.put("rows", commentsDTOS.subList((pageCode - 1) * pageSize, (pageCode * pageSize) - 1));
             return map;
         }
+    }
+
+    @Override
+    public void deleteComments(List<Long> ids) {
+        batchDelete(ids,"id",Comments.class);
+    }
+
+    @Override
+    public List<Comments> findByPage(Comments comments) {
+        Example example = new Example(Comments.class);
+        if (!StringUtils.isEmpty(comments.getName())) {
+            example.createCriteria().andLike("name", "%" + comments.getName() + "%");
+        }
+        List<Comments> list = commentsMapper.selectByExample(example);
+        return list;
     }
 }
