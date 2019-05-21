@@ -1,2 +1,2 @@
 # caomei_princess
-- ![caomei.gif](caomei.jpg)
+- ![caomei.gif](草莓.jpg)
