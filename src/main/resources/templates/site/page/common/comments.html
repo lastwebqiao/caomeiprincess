@@ -43,7 +43,7 @@
                         <span class="vsys">[[${#strings.substringAfter(comment.parent.device, ',')}]]</span></div>
                     <div class="vmeta">
                         <span class="vtime" th:text="${#dates.format(comment.parent.time, 'yyyy-MM-dd')}"></span>
-<!--                        <span th:onclick="javascript:reply([[${comment.parent.name}]], [[${comment.parent.id}]]);" class="vat">回复</span>-->
+<!--                        <span th:onclick="javascript:reply([[${comment.parent.name}]], [[${comment.parent.id}]]);" class="vat">回复</span>todo-->
                     </div>
                     <div class="vcontent">
                         <p th:text="${comment.parent.content}"></p>
