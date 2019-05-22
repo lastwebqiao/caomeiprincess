@@ -12,10 +12,7 @@ import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author tycoding
- * @date 2019-03-13
- */
+
 @Table(name = "tb_login_log")
 @ToString
 @Data

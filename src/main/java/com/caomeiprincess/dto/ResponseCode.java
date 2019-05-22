@@ -4,10 +4,7 @@ import com.caomeiprincess.enums.StatusEnums;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-/**
- * @author tycoding
- * @date 2019-03-09
- */
+
 @Data
 @AllArgsConstructor
 public class ResponseCode {

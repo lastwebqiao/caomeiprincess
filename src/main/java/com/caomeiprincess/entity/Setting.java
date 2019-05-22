@@ -7,10 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-/**
- * @author tycoding
- * @date 2019-03-25
- */
+
 @Data
 @Table(name = "tb_setting")
 public class Setting implements Serializable {

@@ -1,5 +1,6 @@
 package com.caomeiprincess.controller.admin;
 
+import com.caomeiprincess.annotation.Log;
 import com.caomeiprincess.controller.BaseController;
 import com.caomeiprincess.dto.ResponseCode;
 import com.caomeiprincess.entity.LoginLog;
@@ -48,6 +49,7 @@ public class LoginController extends BaseController {
     private LoginLogService loginLogService;
     @RequestMapping("admin/login")
     @ResponseBody
+    @Log("登入")
     public ResponseCode loginIn(Model model,
                                 @RequestParam(value = "username", required = false) String username,
                                 @RequestParam(value = "password", required = false) String password,
@@ -111,6 +113,7 @@ public class LoginController extends BaseController {
      * 退出登入
      */
     @RequestMapping("/admin/logout")
+    @Log("退出登入")
     public String logout(){
         getSubject().logout();
         return "redirect:/admin";

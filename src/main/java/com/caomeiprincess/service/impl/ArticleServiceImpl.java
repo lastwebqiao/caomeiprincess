@@ -3,6 +3,7 @@ package com.caomeiprincess.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.caomeiprincess.common.service.impl.BaseServiceImpl;
+import com.caomeiprincess.dto.ArticleArchives;
 import com.caomeiprincess.entity.*;
 import com.caomeiprincess.exception.GlobalException;
 import com.caomeiprincess.mapper.ArticleMapper;
@@ -121,6 +122,23 @@ public class ArticleServiceImpl extends BaseServiceImpl<Article> implements Arti
                 throw new GlobalException(e.getMessage());
             }
         }
+    }
+
+    @Override
+    public List<ArticleArchives> findArchives() {
+        List<ArticleArchives> articleArchivesList = new ArrayList<ArticleArchives>();
+        try {
+            List<String> dates = articleMapper.findArchivesDates();
+            dates.forEach(date -> {
+                List<Article> articleList = articleMapper.findArchivesByDate(date);
+                ArticleArchives articleArchives = new ArticleArchives(date, articleList);
+                articleArchivesList.add(articleArchives);
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new GlobalException(e.getMessage());
+        }
+        return articleArchivesList;
     }
 
     /**

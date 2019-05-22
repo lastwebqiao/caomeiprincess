@@ -1,6 +1,7 @@
 package com.caomeiprincess.controller.admin;
 
 import com.caomeiprincess.annotation.BodyMapping;
+import com.caomeiprincess.annotation.Log;
 import com.caomeiprincess.controller.BaseController;
 import com.caomeiprincess.dto.QueryPage;
 import com.caomeiprincess.dto.ResponseCode;
@@ -23,18 +24,21 @@ public class TagsController extends BaseController {
     }
 
     @BodyMapping("tags/delete")
+    @Log("删除标签")
     public ResponseCode delete(@RequestBody List<Long> ids){
         tagService.delete(ids);
         return ResponseCode.success();
     }
 
     @BodyMapping("tags/save")
+    @Log("新增标签")
     public ResponseCode delete(@RequestBody Tags tags){
         tagService.save(tags);
         return ResponseCode.success();
     }
 
     @BodyMapping("tags/update")
+    @Log("修改标签")
     public ResponseCode update(@RequestBody Tags tags){
         tagService.update(tags);
         return ResponseCode.success();

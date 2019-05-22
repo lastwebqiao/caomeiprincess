@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceImpl extends BaseServiceImpl<Setting> implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 
     @Autowired
     private SettingMapper settingMapper;
@@ -33,6 +33,11 @@ public class UserServiceImpl extends BaseServiceImpl<Setting> implements UserSer
         } else {
             return new User();
         }
+    }
+
+    @Override
+    public void updateSetting(Setting setting) {
+        settingMapper.updateByPrimaryKey(setting);
     }
 
 }

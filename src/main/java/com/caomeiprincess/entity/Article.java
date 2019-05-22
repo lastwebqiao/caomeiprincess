@@ -14,9 +14,6 @@ import java.util.Date;
 
 /**
  * 文章信息实体
- *
- * @author TyCoding
- * @date 2018/10/16
  */
 @Data
 @Table(name = "tb_article")

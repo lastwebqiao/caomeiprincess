@@ -7,6 +7,8 @@ import com.caomeiprincess.service.LinksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LinksServiceImpl extends BaseServiceImpl<Links> implements LinksService{
 
@@ -15,5 +17,10 @@ public class LinksServiceImpl extends BaseServiceImpl<Links> implements LinksSer
     @Override
     public int findAllCount() {
         return linksMapper.selectCount(new Links());
+    }
+
+    @Override
+    public List<Links> findByPage(Links link) {
+        return linksMapper.select(link);
     }
 }

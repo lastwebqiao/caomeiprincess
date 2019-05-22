@@ -134,6 +134,7 @@ var app = new Vue({
         edit() {
             this.editDialog = false;
             //查询当前id对应的数据
+           //alert(JSON.stringify(this.editor)); todo
             this.$http.put(api.links.update, JSON.stringify(this.editor)).then(result => {
                 this.reloadList();
                 if (result.body.code == 200) {

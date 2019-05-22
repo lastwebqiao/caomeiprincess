@@ -1,6 +1,7 @@
 package com.caomeiprincess.controller.admin;
 
 import com.caomeiprincess.annotation.BodyMapping;
+import com.caomeiprincess.annotation.Log;
 import com.caomeiprincess.controller.BaseController;
 import com.caomeiprincess.dto.QueryPage;
 import com.caomeiprincess.dto.ResponseCode;
@@ -36,17 +37,20 @@ public class CategoryController extends BaseController {
     }
 
     @BodyMapping("category/delete")
+    @Log("删除分类")
     public ResponseCode delete(@RequestBody List<Long> ids){
         categoryService.delete(ids);
         return ResponseCode.success();
     }
     @BodyMapping("category/save")
+    @Log("新增分类")
     public ResponseCode save(@RequestBody Category category){
         categoryService.save(category);
         return ResponseCode.success();
     }
 
     @BodyMapping("category/update")
+    @Log("修改分类")
     public ResponseCode update(@RequestBody Category category){
         categoryService.update(category);
         return ResponseCode.success();

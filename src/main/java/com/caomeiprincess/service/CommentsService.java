@@ -1,6 +1,5 @@
 package com.caomeiprincess.service;
 
-import com.caomeiprincess.annotation.Log;
 import com.caomeiprincess.common.service.BaseService;
 import com.caomeiprincess.entity.Comments;
 

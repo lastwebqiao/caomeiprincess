@@ -8,10 +8,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-/**
- * @author TyCoding
- * @date 2018/10/17
- */
+
 @Data
 @Table(name = "tb_tags")
 public class Tags implements Serializable {

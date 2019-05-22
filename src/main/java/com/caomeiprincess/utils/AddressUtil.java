@@ -12,10 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 
-/**
- * @author tycoding
- * @date 2019-03-26
- */
+
 public class AddressUtil {
 
     /**

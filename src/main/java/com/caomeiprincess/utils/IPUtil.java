@@ -2,10 +2,7 @@ package com.caomeiprincess.utils;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * @author tycoding
- * @date 2019-03-26
- */
+
 public class IPUtil {
 
     private static final String UNKNOWN = "unknown";

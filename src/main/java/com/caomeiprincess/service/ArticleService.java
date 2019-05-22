@@ -1,6 +1,7 @@
 package com.caomeiprincess.service;
 
 import com.caomeiprincess.common.service.BaseService;
+import com.caomeiprincess.dto.ArticleArchives;
 import com.caomeiprincess.entity.Article;
 
 import java.sql.Savepoint;
@@ -26,4 +27,6 @@ public interface ArticleService extends BaseService<Article> {
     void update(Article article);
 
     void addViews(Long id);
+
+    List<ArticleArchives> findArchives();
 }

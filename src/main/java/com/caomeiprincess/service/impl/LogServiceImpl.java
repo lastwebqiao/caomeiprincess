@@ -7,12 +7,14 @@ import com.caomeiprincess.service.LogService;
 import com.caomeiprincess.utils.AddressUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import tk.mybatis.mapper.entity.Example;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
@@ -50,6 +52,33 @@ public class LogServiceImpl extends BaseServiceImpl<SysLog> implements LogServic
         log.setCreateTime(new Date());
         log.setLocation(AddressUtil.getAddress(log.getIp()));
         this.save(log);
+    }
+
+    @Override
+    public List<SysLog> findByPage(SysLog log) {
+        try {
+            Example example = new Example(SysLog.class);
+            Example.Criteria criteria = example.createCriteria();
+            if (StringUtils.isNotBlank(log.getUsername())) {
+                criteria.andCondition("username=", log.getUsername().toLowerCase());
+            }
+            if (StringUtils.isNotBlank(log.getOperation())) {
+                criteria.andCondition("operation like", "%" + log.getOperation() + "%");
+            }
+            if (StringUtils.isNotBlank(log.getLocation())) {
+                criteria.andCondition("location=", log.getLocation());
+            }
+            if (StringUtils.isNotBlank(log.getTimeField())) {
+                String[] split = log.getTimeField().split(",");
+                criteria.andCondition("date_format(CREATE_TIME, '%Y-%m-%d') >=", split[0]);
+                criteria.andCondition("date_format(CREATE_TIME, '%Y-%m-%d') <=", split[1]);
+            }
+            example.setOrderByClause("create_time desc");
+            return this.selectByExample(example);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
 
