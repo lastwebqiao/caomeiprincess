@@ -78,10 +78,10 @@ body {
 }
 
 #login {
-    background: url("../img/bg.png");
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    /*background: url("../img/bg.png");*/
+    /*background-position: center center;*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
     z-index: -999;
     content: "";
     left: 0;
@@ -98,7 +98,7 @@ body {
 }
 
 .header {
-    padding: 24px 20px;
+    padding: 10px 20px;
 }
 .login-card > .el-card__header {
     background: url("../img/header.png");

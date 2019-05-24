@@ -112,22 +112,16 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/lib/**", "anon");
         filterChainDefinitionMap.put("/public/admin/**", "anon");
         filterChainDefinitionMap.put("/public/site/**", "anon");
-        filterChainDefinitionMap.put("/site/css/**", "anon");
-        filterChainDefinitionMap.put("/site/js/**", "anon");
-        filterChainDefinitionMap.put("/site/img/**", "anon");
-
-        filterChainDefinitionMap.put("/", "anon");
-        filterChainDefinitionMap.put("/site", "anon");
         filterChainDefinitionMap.put("/site/**", "anon");
-
         filterChainDefinitionMap.put("/live2d/**", "anon");
 
         filterChainDefinitionMap.put("/logout", "logout");
-
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/admin/login", "anon");
 
         filterChainDefinitionMap.put("/admin/**", "user");
+
+        filterChainDefinitionMap.put("/test/**", "anon");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 

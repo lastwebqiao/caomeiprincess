@@ -113,9 +113,8 @@ public class LoginController extends BaseController {
      * 退出登入
      */
     @RequestMapping("/admin/logout")
-    @Log("退出登入")
     public String logout(){
         getSubject().logout();
-        return "redirect:/admin";
+        return "redirect:/login";
     }
 }
