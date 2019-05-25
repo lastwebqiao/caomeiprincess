@@ -12,6 +12,7 @@ new Vue({
             login: {
                 username: '',
                 password: '',
+                code:'',
                 remember: ''
             },
             flag: true,
@@ -44,8 +45,10 @@ new Vue({
                     this.$http.post(api.login, {
                         username: this.login.username,
                         password: this.login.password,
+                        code:this.login.code,
                         remember: this.login.remember
                     }).then(result => {
+                        console.log(result.body.code);
                         if (result.body.code == 200) {
                             window.location.href = "/admin";
                             this.loading.close(); //关闭动画加载

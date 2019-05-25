@@ -97,13 +97,10 @@ input[value="on"]:checked + input[value="off"] {
     top: 80px;
 }
 
-.labelClass {
+label {
     width: 51px;
     height: 51px;
-    top: 94px;
     position: absolute;
-    left: 0;
-    margin-left: -24px;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
@@ -115,8 +112,13 @@ input[value="on"]:checked + input[value="off"] {
     -o-animation: oscillaLampadina .9s ease-in-out 0s infinite alternate;
     animation: oscillaLampadina .9s ease-in-out 0s infinite alternate;
 }
+.labelClass{
+    top: 94px;
+    left: 0;
+    margin-left: -24px;
+}
 input[value="off"]:checked ~
-.labelClass {
+label {
     background: rgba(255,255,255,0.03);
     -webkit-box-shadow: inset 0px 1px 5px rgba(255,255,255,0.1), inset 0px 2px 20px rgba(255,255,255,0.07), -80px -15px 15px -5px rgba(0,0,0,0.1);
     -moz-box-shadow: inset 0px 1px 5px rgba(255,255,255,0.1), inset 0px 2px 20px rgba(255,255,255,0.07), -80px -15px 15px -5px rgba(0,0,0,0.1);
@@ -125,7 +127,7 @@ input[value="off"]:checked ~
     box-shadow: inset 0px 1px 5px rgba(255,255,255,0.1), inset 0px 2px 20px rgba(255,255,255,0.07), -80px -15px 15px -5px rgba(0,0,0,0.1);
 }
 input[value="on"]:checked ~
-.labelClass {
+label {
     background: rgba(255,255,255,1);
     -webkit-box-shadow: 0px 0px 10px rgba(255,255,255,0.8), 0px 0px 30px rgba(255,255,255,0.8), 0px 0px 50px rgba(255,255,255,0.6), 0px 0px 70px rgba(255,255,255,0.6), -80px -15px 120px 0px rgba(255,255,255,0.4);
     -moz-box-shadow: 0px 0px 10px rgba(255,255,255,0.8), 0px 0px 30px rgba(255,255,255,0.8), 0px 0px 50px rgba(255,255,255,0.6), 0px 0px 70px rgba(255,255,255,0.6), -80px -15px 120px 0px rgba(255,255,255,0.4);
@@ -135,7 +137,7 @@ input[value="on"]:checked ~
 }
 
 input[value="off"]:checked ~
-.labelClass:after {
+label:after {
     content: " ";
     width: 15px;
     height: 15px;

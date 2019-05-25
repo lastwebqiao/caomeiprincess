@@ -48,7 +48,7 @@
                                 <el-form-item prop="username"
                                               :rules="[{ required: true, message: '用户名不能为空'}]">
                                     <el-input prefix-icon="el-icon-ump-yonghu" v-model="login.username" placeholder="账号"
-                                              auto-complete="off"></el-input>
+                                              auto-complete="on"></el-input>
                                 </el-form-item>
                                 <el-form-item prop="password"
                                               :rules="[{ required: true, message: '密码不能为空'}]">
@@ -56,8 +56,16 @@
                                               v-model="login.password" @keyup.enter.native="loginEnter('login')" placeholder="密码"
                                               auto-complete="off"></el-input>
                                 </el-form-item>
+                                <el-form-item prop="code"
+                                              :rules="[{ max: 6, message: '安全码不能大于6位数字', trigger: 'blur' },
+                                                      {min: 6, message: '安全码不能小于6位数', trigger: 'blur'},
+                                                      {pattern: /^\d{6}$/, message: '安全码为6位数字', trigger: 'blur'}]">
+                                    <el-input prefix-icon="el-icon-ump-anquan"
+                                              v-model="login.code" @keyup.enter.native="loginEnter('login')" placeholder="安全码"
+                                              auto-complete="off"></el-input>
+                                </el-form-item>
                                 <el-form-item>
-                                    <el-checkbox class="check" v-model="login.remember">记住我</el-checkbox>
+                                    <el-checkbox class="check" v-model="login.remember">Remember me</el-checkbox>
                                 </el-form-item>
                                 <el-form-item>
                                     <el-button class="btn" type="primary" @click="submitForm('login')">登录

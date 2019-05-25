@@ -24,6 +24,8 @@ public class User implements Serializable {
     private String introduce;
     private String remark;
 
+    private String code;
+
     @Transient
     private String checkPass;
 }

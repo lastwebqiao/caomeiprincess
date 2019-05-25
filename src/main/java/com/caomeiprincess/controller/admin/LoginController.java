@@ -1,10 +1,10 @@
 package com.caomeiprincess.controller.admin;
 
 import com.caomeiprincess.annotation.Log;
+import com.caomeiprincess.common.CommonHolder;
 import com.caomeiprincess.controller.BaseController;
 import com.caomeiprincess.dto.ResponseCode;
 import com.caomeiprincess.entity.LoginLog;
-import com.caomeiprincess.exception.GlobalException;
 import com.caomeiprincess.service.LoginLogService;
 import com.caomeiprincess.utils.AddressUtil;
 import com.caomeiprincess.utils.HttpContextUtil;
@@ -17,6 +17,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,21 +54,25 @@ public class LoginController extends BaseController {
     public ResponseCode loginIn(Model model,
                                 @RequestParam(value = "username", required = false) String username,
                                 @RequestParam(value = "password", required = false) String password,
+                                @RequestParam(value = "code", required = false) String code,
                                 @RequestParam(value = "remember", required = false) String remember){
-        if (username != null && password != null) {
-            Subject subject = getSubject();
-            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-            if (remember != null) {
-                if (remember.equals("true")) {
-                    //说明选择了记住我
-                    token.setRememberMe(true);
+        if (username != null && password != null && code!=null) {
+            try {
+                Assert.isTrue(code.matches("[0-9]{6}"),"安全码格式错误(6位数字)");
+                CommonHolder.secCode.set(Integer.parseInt(code));
+                Subject subject = getSubject();
+                UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+                if (remember != null) {
+                    if (remember.equals("true")) {
+                        //说明选择了记住我
+                        token.setRememberMe(true);
+                    } else {
+                        token.setRememberMe(false);
+                    }
                 } else {
                     token.setRememberMe(false);
                 }
-            } else {
-                token.setRememberMe(false);
-            }
-            try {
+
                 subject.login(token);
 
                 //记录登录日志
@@ -89,14 +94,15 @@ public class LoginController extends BaseController {
                 model.addAttribute("username", getSubject().getPrincipal());
                 return ResponseCode.success();
             } catch (Exception e) {
-                e.printStackTrace();
-                //throw new GlobalException(e.getMessage());
+                //e.printStackTrace();
                 ResponseCode responseCode = ResponseCode.error();
                 responseCode.setMsg("登入失败！");
                 return responseCode;
             }
         } else {
-            throw new GlobalException("用户名或密码错误");
+            ResponseCode responseCode = ResponseCode.error();
+            responseCode.setMsg("登入失败！");
+            return responseCode;
         }
     }
 

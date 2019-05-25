@@ -149,3 +149,8 @@ body {
         margin-top: 29% !important;
     }
 }
+.check{
+    top:-20px;
+    margin-left: -50px;
+    position: absolute;
+}
