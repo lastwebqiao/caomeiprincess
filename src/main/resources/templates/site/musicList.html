@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="site/common/head">-->
+<!--</head>-->
+<title>网易云音乐</title>
+<style type="text/css">
+
+    html {
+        height: 100%;
+        display: table;
+    }
+
+    body {
+        display: table-cell;
+        height: 100%;
+    }
+    .music {
+        position: absolute;      /*绝对定位*/
+        top: 50%;                  /* 距顶部50%*/
+        left: 50%;                  /* 距左边50%*/
+        height: 60%;  margin-top: -20%;   /*margin-top为height一半的负值*/
+        width: 100%;  margin-left: -50%;    /*margin-left为width一半的负值*/
+    }
+</style>
+<body>
+
+<article class="main-content post-page" itemscope itemtype="http://schema.org/Article">
+    <div class = "music">
+        <meting-js th:id="${musicId}" server="netease" type="playlist" auto="" autoplay="flase" list-max-height="800px;"></meting-js>
+    </div>
+</article>
+<script type="text/javascript" th:src="@{/lib/editormd/jquery-3.3.1.min.js}"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js"></script>
+</body>
+</html>

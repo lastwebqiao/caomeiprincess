@@ -29,6 +29,19 @@ public class HomeController {
         initIndex(1, model);
         return "site/index";
     }
+
+    @RequestMapping(value = {"/music/{musicId}"})
+    public String music(Model model,@PathVariable("musicId") String musicId) {
+        model.addAttribute("musicId",musicId);
+        return "site/music";
+    }
+
+    @RequestMapping(value = {"/musicList/{musicId}"})
+    public String musicList(Model model,@PathVariable("musicId") String musicId) {
+        model.addAttribute("musicId",musicId);
+        return "site/musicList";
+    }
+
     @Autowired
     private UserService userService;
     @Autowired

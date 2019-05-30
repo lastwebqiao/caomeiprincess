@@ -128,13 +128,13 @@ var app = new Vue({
             this.editor = {}; //清空表单
             //查询当前id对应的数据
             this.$http.get(api.links.findById(id)).then(result => {
-                this.editor = result.body.data;
+               this.editor = result.body.data;
             });
         },
         edit() {
             this.editDialog = false;
             //查询当前id对应的数据
-           //alert(JSON.stringify(this.editor)); todo
+           //alert(JSON.stringify(this.editor));
             this.$http.put(api.links.update, JSON.stringify(this.editor)).then(result => {
                 this.reloadList();
                 if (result.body.code == 200) {

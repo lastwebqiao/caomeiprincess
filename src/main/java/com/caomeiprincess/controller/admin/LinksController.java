@@ -38,7 +38,7 @@ public class LinksController extends BaseController {
     }
     @BodyMapping("links/update")
     @Log("修改又链")
-    public ResponseCode update(Links links){
+    public ResponseCode update(@RequestBody Links links){
         linksService.updateAll(links);
         return ResponseCode.success();
     }
@@ -50,7 +50,6 @@ public class LinksController extends BaseController {
     }
     @BodyMapping("links/findById")
     public ResponseCode findById(Long id){
-        linksService.selectByKey(id);
-        return ResponseCode.success();
+        return ResponseCode.success(linksService.selectByKey(id));
     }
 }
